@@ -69,6 +69,11 @@
           "default": true,
           "markdownDescription": "Autorefresh workspace status when something changes."
         },
+        "plastic-scm.hideNewFolders": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "If enabled, folders won't show up as changes when Private or Added"
+        },
         "plastic-scm.decorations.enabled": {
           "type": "boolean",
           "default": true,

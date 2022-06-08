@@ -3,6 +3,7 @@ export interface IConfig {
   consolidateUnrealOneFilePerActorChanges: boolean;
   cmConfiguration: IShellConfig;
   enabled: boolean;
+  hideNewFolders: boolean;
 }
 
 export interface IShellConfig {
