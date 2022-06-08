@@ -4,14 +4,14 @@
   "description": "Plastic SCM integration",
   "publisher": "plastic-scm",
   "license": "MIT",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "icon": "images/logo.png",
   "homepage": "https://github.com/PlasticSCM/vscode-plasticscm/blob/master/README.md",
   "bugs": {
     "url": "https://github.com/PlasticSCM/vscode-plasticscm/issues"
   },
   "engines": {
-    "vscode": "^1.19.0"
+    "vscode": "^1.64.0"
   },
   "repository": {
     "type": "git",
@@ -63,6 +63,11 @@
           "type": "boolean",
           "default": true,
           "markdownDescription": "Autorefresh workspace status when something changes."
+        },
+        "plastic-scm.decorations.enabled": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Whether or not file decorations are enabled."
         }
       }
     },
@@ -71,10 +76,19 @@
         "command": "plastic-scm.checkin",
         "category": "Plastic SCM",
         "title": "Checkin",
-        "icon": {
-          "light": "images/icons/light/commit.svg",
-          "dark": "images/icons/dark/commit.svg"
-        }
+        "icon": "$(check)"
+      },
+      {
+        "command": "plastic-scm.refresh",
+        "category": "Plastic SCM",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "plastic-scm.openFile",
+        "category": "Plastic SCM",
+        "title": "Open File",
+        "icon": "$(go-to-file)"
       }
     ],
     "menus": {
@@ -83,6 +97,18 @@
           "command": "plastic-scm.checkin",
           "group": "navigation",
           "when": "scmProvider == plastic-scm"
+        },
+        {
+          "command": "plastic-scm.refresh",
+          "group": "navigation",
+          "when": "scmProvider == plastic-scm"
+        }
+      ],
+      "scm/resourceState/context": [
+        {
+          "command": "plastic-scm.openFile",
+          "when": "scmProvider == plastic-scm && scmResourceGroup == status",
+          "group": "inline@1"
         }
       ]
     }
@@ -99,30 +125,32 @@
   },
   "dependencies": {
     "byline": "^5.0.0",
-    "uuid": "^8.2.0",
+    "isbinaryfile": "^4.0.8",
+    "uuid": "^8.3.2",
     "xml2js": "^0.4.23"
   },
   "devDependencies": {
-    "@types/byline": "^4.2.32",
-    "@types/chai": "^4.2.11",
-    "@types/glob": "^7.1.3",
-    "@types/mocha": "^8.0.0",
-    "@types/node": "^12.11.7",
-    "@types/uuid": "^8.0.0",
-    "@types/vscode": "^1.19.0",
-    "@types/xml2js": "^0.4.5",
-    "@typescript-eslint/eslint-plugin": "^3.6.1",
-    "@typescript-eslint/eslint-plugin-tslint": "^3.6.1",
-    "@typescript-eslint/parser": "^3.6.1",
-    "chai": "^4.2.0",
-    "eslint": "^7.5.0",
-    "eslint-config-prettier": "^6.11.0",
-    "glob": "^7.1.5",
-    "mocha": "^8.0.1",
+    "@types/byline": "^4.2.33",
+    "@types/chai": "^4.3.1",
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^16.11.26",
+    "@types/uuid": "^8.3.4",
+    "@types/vscode": "^1.64.0",
+    "@types/xml2js": "^0.4.9",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.23.0",
+    "@vscode/test-electron": "^2.1.2",
+    "chai": "^4.3.6",
+    "eslint": "^8.15.0",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "glob": "^7.2.0",
+    "mocha": "^9.2.1",
     "nyc": "^15.1.0",
+    "prettier": "^2.5.1",
     "typemoq": "^2.1.0",
-    "typescript": "^3.9.7",
-    "vsce": "^1.77.0",
-    "vscode-test": "^1.4.0"
+    "typescript": "^4.6.4",
+    "vsce": "^2.7.0"
   }
 }
