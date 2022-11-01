@@ -30,6 +30,7 @@ import { isBinaryFile } from "isbinaryfile";
 import { PlasticScmResource } from "./plasticScmResource";
 import { throttle } from "./decorators";
 import path = require("path");
+import fs = require("fs");
 
 export class Workspace implements Disposable, QuickDiffProvider {
 
@@ -205,6 +206,17 @@ export class Workspace implements Disposable, QuickDiffProvider {
       }
 
       let cachedFileLocation: Uri | undefined;
+
+      if (
+        (changeInfo.type & (ChangeType.Added | ChangeType.Private)) !== 0 &&
+        changeInfo.path.scheme === "file" &&
+        this.mConfig.hideNewFolders
+      ) {
+        const statResults = await fs.promises.stat(changeInfo.path.fsPath);
+        if (statResults.isDirectory()) {
+          continue;
+        }
+      }
 
       // prefetch original files for showing diff
       const unallowedFlag = ChangeType.Added | ChangeType.Private | ChangeType.Deleted | ChangeType.Moved;

@@ -22,6 +22,7 @@ const defaultConfig: IConfig = {
   },
   consolidateUnrealOneFilePerActorChanges: true,
   enabled: true,
+  hideNewFolders: false,
 };
 
 let extension: Extension;
