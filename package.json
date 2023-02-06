@@ -139,7 +139,7 @@
     "@types/chai": "^4.3.3",
     "@types/glob": "^8.0.0",
     "@types/mocha": "^9.1.1",
-    "@types/node": "^16.11.26",
+    "@types/node": "^18.11.19",
     "@types/uuid": "^8.3.4",
     "@types/vscode": "^1.64.0",
     "@types/xml2js": "^0.4.11",
